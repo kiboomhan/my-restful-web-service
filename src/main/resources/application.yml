@@ -7,3 +7,16 @@ logging:
 spring:
   messages:
     basename: messages
+
+  jpa:
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
