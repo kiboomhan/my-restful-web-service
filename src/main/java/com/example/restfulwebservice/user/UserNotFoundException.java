@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.helloworld.user;
+package com.example.restfulwebservice.user;
 
 // HTTP Status code
 // 2XX -> OK

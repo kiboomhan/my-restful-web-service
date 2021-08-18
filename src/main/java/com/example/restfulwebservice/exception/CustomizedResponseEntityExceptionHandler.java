@@ -1,6 +1,6 @@
 package com.example.restfulwebservice.exception;
 
-import com.example.restfulwebservice.helloworld.user.UserNotFoundException;
+import com.example.restfulwebservice.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

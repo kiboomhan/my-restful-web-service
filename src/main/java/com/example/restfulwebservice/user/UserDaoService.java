@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.helloworld.user;
+package com.example.restfulwebservice.user;
 
 import org.springframework.stereotype.Service;
 
@@ -32,8 +32,20 @@ public class UserDaoService {
             // add
             setUsersCount(usersCount + 1);
             user.setId(usersCount);
+            users.add(user);
+        } else {
+            // edit
+            User targetUser = users.stream().filter(dbUser -> dbUser.getId().equals(user.getId()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (targetUser != null) {
+                targetUser.setJoinDate(user.getJoinDate());
+                targetUser.setName(user.getName());
+                return targetUser;
+            }
         }
-        users.add(user);
+
         return user;
     }
 

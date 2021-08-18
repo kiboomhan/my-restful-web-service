@@ -1,4 +1,4 @@
-package com.example.restfulwebservice.helloworld.user;
+package com.example.restfulwebservice.user;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +37,21 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userDaoService.save(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/users")
+    public ResponseEntity<User> editUser(@RequestBody User user) {
+        User savedUser = userDaoService.save(user);
+
+        if (savedUser == null) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", user.getId()));
+        }
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
