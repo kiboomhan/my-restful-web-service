@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
 
     private static final Contact DEFAULT_CONTACT = new Contact("Kenneth Lee", "http://leanject.com", "kiboomhan@gmail.com");
@@ -28,7 +27,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
 //        return new Docket(DocumentationType.OAS_30);
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
 //                .useDefaultResponseMessages(false) // Swagger 에서 제공해주는 기본 응답 코드 (200, 401, 403, 404)
 //                .select()
 //                .apis(RequestHandlerSelectors.basePackage("com.example.restfulwebservice")) // api 스팩이 작송되어 있는 패키지 지정
