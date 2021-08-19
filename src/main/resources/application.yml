@@ -1,21 +1,43 @@
+
+
 server:
   port: 8088
 logging:
   level:
     org.springframework : debug
-
+    org.hibernate.SQL: debug  # 로그 형식으로 쿼리 보여주기
 spring:
   messages:
     basename: messages
 
+  datasource:
+    generate-unique-name: false # 이 설정으로 인해 `org.h2.jdbc.JdbcSQLNonTransientConnectionException` 관련 오류 해결
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop # 서버 시작에 테이블 생성
+    properties:
+      hibernate.format_sql: true # 압축된 쿼리 읽기 좋게 포멧
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true # spring boot 2.5 넘어오면서 data.sql 실행 순서 어긋나는 부분 해결
 
   h2:
     console:
       enabled: true
+      settings:
+        web-admin-password: test1234
+        web-allow-others: true
+        trace: true
+
   hateoas:
     use-hal-as-default-json-media-type: false
+
+
 #  security:
 #    user:
 #      name: username
